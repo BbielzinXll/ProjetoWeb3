@@ -12,72 +12,40 @@ import model.Artista;
 import model.ArtistaDAO;
 
 
-@WebServlet(name = "CadastroArtista", urlPatterns = {"/CadastroArtista"})
-public class CadastroArtista extends HttpServlet {
-    private int id;
-    private String artista;
-    private int genero;
-    private String nacionalidade;
-    private int solo;
+@WebServlet(name = "ArtistaUpdate", urlPatterns = {"/ArtistaUpdate"})
+public class ArtistaUpdate extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        //Verificar se há um ID
-        if(request.getParameter("id")!=null){
-            this.id = Integer.parseInt(request.getParameter("id"));
-        }        
+        //Recebendo o ID
+        int id = Integer.parseInt(request.getParameter("id"));
         
-        //Recebendo valores do formulário de cadastro
-        this.artista = request.getParameter("artista");
-        this.genero = Integer.parseInt(request.getParameter("genero"));
-        this.nacionalidade = request.getParameter("nacionalidade");
-        if(request.getParameter("solo")!=null){
-            this.solo = 1;
-        } else {
-            this.solo = 0;
-        }
-        
-        //Criando objeto da classe Artista para salvar no BD
-        Artista artista = new Artista(
-                this.artista,
-                this.genero,
-                this.nacionalidade,
-                this.solo
-        );       
-        
-        //Instanciando a classe DAO para usar o método
-        //de inserção enviando o objeto criado acima
+        //Pegando registro do BD
         try {
             ArtistaDAO adao = new ArtistaDAO();
-            
-            //Se tivermos um ID, atualizaremos o registro
-            //senão salvaremos como um novo registro
-            if(request.getParameter("id")!=null){
-                artista.setIdArtista(this.id);
-                adao.updateArtista(artista);
-            } else {
-                adao.insertArtista(artista);
-            }
-                response.sendRedirect("lista.jsp");
-        
-        } catch(ClassNotFoundException | SQLException erro) {   
+            Artista art = adao.listById(id);
+            request.setAttribute("artista", art);
+            request.getRequestDispatcher("edit-artista.jsp")
+                    .forward(request, response);
+        } catch(SQLException | ClassNotFoundException erro) {
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastroArtista</title>");            
+            out.println("<title>Servlet ArtistaUpdate</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Ocorreu algum erro: " + erro + "</h1>");
+            out.println("<h1>Erro: " + erro + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-        }
     }
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

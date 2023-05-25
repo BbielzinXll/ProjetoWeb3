@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="css/Css-cadastro.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -22,10 +23,14 @@
             Bem vindo <%= (uSession != null)
                             ? uSession.getUserName()
                             : "visitante" %>
-            <button onclick="window.location.href='session/logout.jsp'">Logout</button>
+            <button onclick="window.location.href='session/logout.jsp'" id="btn-logout">Logout</button>
         </p>
         <hr>
-        <button onclick="window.location.href='cadastro.jsp'">CADASTRAR</button>
-        <button onclick="window.location.href='lista.jsp'">LISTAR</button>
+        <main>
+            <button onclick="window.location.href='cadastro.jsp'" class="button" >ESCOLHA SEU PRESENTE</button>
+            <br><br>
+            <br><br>
+            <button onclick="window.location.href='lista.jsp'" class="button">PRESENTE ESCOLHIDOS</button>
+        </main>
     </body>
 </html>

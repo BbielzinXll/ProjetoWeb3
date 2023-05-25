@@ -71,7 +71,7 @@ public class ArtistaDAO {
     }
     
     //Select
-    public Artista listByld(int i) throws SQLException{
+    public Artista listById(int i) throws SQLException{
         String query = "SELECT * FROM artistas "
                 + "WHERE cod_artista = " + i;
         
