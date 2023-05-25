@@ -1,5 +1,11 @@
-body{
-background-image: radial-gradient(circle at 68.3% -18.3%, #00745f 0, #007473 3.33%, #007586 6.67%, #007599 10%, #0075ab 13.33%, #0074bb 16.67%, #0074c9 20%, #0072d5 23.33%, #0070df 26.67%, #006ee6 30%, #006aea 33.33%, #0065ec 36.67%, #005fea 40%, #0057e5 43.33%, #004ede 46.67%, #4d42d4 50%, #7333c8 53.33%, #8e1fb9 56.67%, #a200a9 60%, #b20098 63.33%, #be0086 66.67%, #c60073 70%, #cb0060 73.33%, #ce004e 76.67%, #cd003c 80%, #ca002a 83.33%, #c50017 86.67%, #be0000 90%, #b61000 93.33%, #ac2900 96.67%, #a03900 100%);;   
+:root {
+  --minha-cor: radial-gradient(circle at 68.3% -18.3%, #00745f 0, #007473 3.33%, #007586 6.67%, #007599 10%, #0075ab 13.33%, #0074bb 16.67%, #0074c9 20%, #0072d5 23.33%, #0070df 26.67%, #006ee6 30%, #006aea 33.33%, #0065ec 36.67%, #005fea 40%, #0057e5 43.33%, #004ede 46.67%, #4d42d4 50%, #7333c8 53.33%, #8e1fb9 56.67%, #a200a9 60%, #b20098 63.33%, #be0086 66.67%, #c60073 70%, #cb0060 73.33%, #ce004e 76.67%, #cd003c 80%, #ca002a 83.33%, #c50017 86.67%, #be0000 90%, #b61000 93.33%, #ac2900 96.67%, #a03900 100%);;
+}
+
+html{
+    background-image: var(--minha-cor);
+    background-repeat: no-repeat;
+    height: 100%;
 }
 
 #form-login {
@@ -22,5 +28,14 @@ input[type="submit"] {
     padding: 5px;
     color: blue;
     box-shadow: 3px 3px 3px black;
+}
+
+main {
+    border: solid 5px white;
+    width: 300px;
+    padding: 50px;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
 }
 

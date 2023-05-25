@@ -3,17 +3,19 @@
     Created on : 10 de mai. de 2023, 19:25:10
     Author     : QI
 --%>
+
 <%@page import="model.ArtistaDAO" %>
 <%@page import="model.Artista" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="css/css-biel.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Musica</title>
     </head>
     <body>
-        <h1>Lista</h1>
+        <h1>PRESENTES ESCOLHIDOS</h1>
         <hr>
         
         <table border="1">
@@ -30,9 +32,9 @@
             </thead>
             <tbody>
                 <%
-                ArtistaDAO adao = new ArtistaDAO();
-                for(Artista art : adao.listAll()) {
-                 %>
+                    ArtistaDAO adao = new ArtistaDAO();
+                    for(Artista art : adao.listAll()) {
+                %>
                 <tr>
                     <td><%= art.getIdArtista() %></td>
                     <td><%= art.getArtista() %></td>
@@ -40,10 +42,10 @@
                     <td><%= art.getNacionalidade() %></td>
                     <td><%= art.getSolo() %></td>
                     <td>
-                        <a href="ArtistaUpdate?id=">EDITAR</a>
+                        <a href="ArtistaUpdate?id=<%= art.getIdArtista() %>">EDITAR</a>
                     </td>
                     <td>
-                        <a onclick="confirmDelete()">EXCLUIR</a>
+                        <a onclick="confirmDelete(<%= art.getIdArtista() %>)">EXCLUIR</a>
                     </td>
                 </tr>
                 <% } %>
@@ -55,9 +57,9 @@
         <a href="home.jsp" >Pagina inicial</a>
         
         <script>
-            function confirmDelete() {
+            function confirmDelete(id) {
                 if(confirm("Deseja realmente excluir?")) {
-                    window.location.replace("ArtistaDelete?cod=");
+                    window.location.replace("ArtistaDelete?cod="+id);
                 } else {
                     alert("Exclusão cancelada!");
                 }
